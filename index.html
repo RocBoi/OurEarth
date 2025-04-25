@@ -11,27 +11,31 @@
 </head>
 <body>
     <header>
-        <h1>Real-Time Earth Data from NASA</h1>
-        <p>Visualizing atmospheric data and noble gases</p>
+        <div class="container">
+            <h1>Real-Time Earth Data from NASA</h1>
+            <p>Visualizing atmospheric data and noble gases</p>
+        </div>
     </header>
 
-    <section id="atm-data">
-        <h2>Atmospheric Data</h2>
-        <!-- This will display the fetched data from NASA -->
-        <p>Loading...</p>
-    </section>
+    <div class="container">
+        <section id="atm-data">
+            <h2>Atmospheric Data</h2>
+            <!-- This will display the fetched data from NASA -->
+            <p>Loading...</p>
+        </section>
 
-    <section id="atm-visualization-container">
-        <h2>Atmospheric Visualization</h2>
-        <!-- Canvas for CO2 visualization -->
-        <canvas id="atm-visualization" width="400" height="200"></canvas>
-    </section>
+        <section id="atm-visualization-container" class="chart-container">
+            <h2>CO2 Levels Visualization</h2>
+            <!-- Canvas for CO2 visualization -->
+            <canvas id="atm-visualization" width="600" height="400"></canvas>
+        </section>
 
-    <section id="noble-gases-chart-container">
-        <h2>Noble Gases Concentration</h2>
-        <!-- Canvas for noble gases data -->
-        <canvas id="noble-gases-chart" width="400" height="200"></canvas>
-    </section>
+        <section id="noble-gases-chart-container" class="chart-container">
+            <h2>Noble Gases Concentration</h2>
+            <!-- Canvas for noble gases data -->
+            <canvas id="noble-gases-chart" width="600" height="400"></canvas>
+        </section>
+    </div>
 
     <!-- Include your main.js file here -->
     <script src="main.js"></script>
