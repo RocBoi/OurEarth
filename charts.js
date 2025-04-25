@@ -59,3 +59,33 @@ function renderNobleGasChart(data) {
         }
     });
 }
+function createCO2Chart(co2Levels) {
+  const ctx = document.getElementById('atm-visualization').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: co2Levels.map(item => item.date),
+      datasets: [{
+        label: 'CO2 ppm',
+        data: co2Levels.map(item => item.value),
+        borderColor: 'rgba(255, 99, 132, 1)',
+        fill: false
+      }]
+    }
+  });
+}
+
+function createNobleGasesChart(gases) {
+  const ctx = document.getElementById('noble-gases-chart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: gases.map(g => g.gas),
+      datasets: [{
+        label: 'Concentration (%)',
+        data: gases.map(g => g.concentration),
+        backgroundColor: 'rgba(54, 162, 235, 0.6)'
+      }]
+    }
+  });
+}
