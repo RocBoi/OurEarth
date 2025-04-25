@@ -1,0 +1,39 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+#cesiumContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+#realtime {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 255, 0, 0.7);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.control-panel {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 8px;
+}
+.control-panel button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
