@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OurEarth - Real-Time 4D Globe</title>
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.109/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.109/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+  <div id="realtime">REAL-TIME ACTIVE</div>
+  <div class="control-panel">
+    <button onclick="toggleLayer('neon')">Neon</button>
+    <button onclick="toggleLayer('argon')">Argon</button>
+    <button onclick="toggleLayer('krypton')">Krypton</button>
+    <button onclick="toggleLayer('xenon')">Xenon</button>
+    <button onclick="toggleLayer('helium')">Helium</button>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
