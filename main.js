@@ -1,5 +1,26 @@
 require('dotenv').config();
 const token = process.env.NASA_API_TOKEN;
+fetch('data/atmospheric.json')
+  .then(response => response.json())
+  .then(data => {
+    // Display data in the <p> inside #atm-data
+    const dataSection = document.querySelector('#atm-data p');
+    dataSection.textContent = JSON.stringify(data, null, 2);
+
+    // Example: Pass CO2 data to chart
+    if (data.co2_levels) {
+      createCO2Chart(data.co2_levels);
+    }
+
+    // Example: Pass noble gas data to chart
+    if (data.noble_gases) {
+      createNobleGasesChart(data.noble_gases);
+    }
+  })
+  .catch(error => {
+    console.error('Error loading atmospheric data:', error);
+    document.querySelector('#atm-data p').textContent = 'Error loading data.';
+  });
 // Function to fetch real-time atmospheric data from NASA API and display it
 async function fetchEarthData() {
     const token = "your_token_here"; // Ensure this is securely stored (do not expose it in production code)
