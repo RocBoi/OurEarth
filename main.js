@@ -1,5 +1,6 @@
-require('dotenv').config();
-const token = process.env.NASA_API_TOKEN;
+require('dotenv').config(); // Load environment variables from .env
+
+const token = process.env.NASA_API_TOKEN; // Use the token
 fetch('data/atmospheric.json')
   .then(response => response.json())
   .then(data => {
