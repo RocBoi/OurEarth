@@ -1,0 +1,6 @@
+title: Our Earth
+description: Visualizing esoteric atmospheric energy
+baseurl: "" # leave this empty for user/organization site
+url: "https://RocBoi.github.io" # replace with your actual GitHub Pages URL
+theme: minima
+markdown: kramdown
