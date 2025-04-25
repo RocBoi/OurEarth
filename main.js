@@ -1,3 +1,5 @@
+require('dotenv').config();
+const token = process.env.NASA_API_TOKEN;
 // Function to fetch real-time atmospheric data from NASA API and display it
 async function fetchEarthData() {
     const token = "your_token_here"; // Ensure this is securely stored (do not expose it in production code)
