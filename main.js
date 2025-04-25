@@ -1,6 +1,6 @@
 // Function to fetch real-time atmospheric data from NASA API and display it
 async function fetchEarthData() {
-    const token = "eyJ0eXAiOiJKV1QiLCJvcmlnaW4iOiJFYXJ0aGRhdGEgTG9naW4iLCJzaWciOiJlZGxqd3RwdWJrZXlfb3BzIiwiYWxnIjoiUlMyNTYifQ.eyJ0eXBlIjoiVXNlciIsInVpZCI6Im91cmVhcnRoIiwiZXhwIjoxNzUwNjQwMzMxLCJpYXQiOjE3NDU0NTYzMzEsImlzcyI6Imh0dHBzOi8vdXJzLmVhcnRoZGF0YS5uYXNhLmdvdiIsImlkZW50aXR5X3Byb3ZpZGVyIjoiZWRsX29wcyIsImFjciI6ImVkbCIsImFzc3VyYW5jZV9sZXZlbCI6M30.Ae3_y0CnZ3TBTUcx2u015nU4Z29rbuhmZWMdBOuRXJBC4FQVTxYzDeXQkOsF8s-N9TDU9bnrMLb_hgmz3k5PWHjojG8T1B1KIT_tEZAagqduyjre4VctAiECBD_EEuknPIhLMUJ9ixSb-8XGBX4jz1niKGuKsGBiYr7Cs7FAFfwzSDodhnZXdjFjBTi_jPwuhVxer5Urv8yOudv-tuQRRHQFXdGUqegStifKREk9uZmmbKpaDGb67eusACiV-q7P96M_X6_Z3MjYLDM5u8ZlKAMshhMUO7tj1LLM9S1eiP0QotyAdzblomR6nXQunPhLpyrI9IWmEDpkjoCSwDWsZA";
+    const token = "your_token_here"; // Ensure this is securely stored (do not expose it in production code)
 
     const headers = {
         "Authorization": `Bearer ${token}`,
@@ -16,7 +16,7 @@ async function fetchEarthData() {
 
         // Displaying raw data in the HTML section
         document.getElementById("atm-data").innerHTML = `
-            <p>Data from NASA Earth: ${JSON.stringify(data)}</p>
+            <p>Data from NASA: ${JSON.stringify(data)}</p>
         `;
 
         // Process and render specific data for visualization
