@@ -1,39 +1,101 @@
-body, html {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
-#cesiumContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+
+body {
+    background-color: #f0f8ff;
+    color: #333;
+    padding: 20px;
 }
-#realtime {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: rgba(0, 255, 0, 0.7);
-  padding: 8px 12px;
-  border-radius: 4px;
-  font-weight: bold;
+
+/* Header Styles */
+header {
+    text-align: center;
+    margin-bottom: 30px;
 }
-.control-panel {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  border-radius: 8px;
+
+header h1 {
+    font-size: 2.5em;
+    color: #003366;
 }
-.control-panel button {
-  margin: 5px;
-  padding: 8px 12px;
-  border: none;
-  background: #222;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 4px;
+
+header p {
+    font-size: 1.2em;
+    color: #555;
 }
+
+/* Section Styles */
+section {
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 2em;
+    color: #003366;
+    margin-bottom: 15px;
+}
+
+#atm-data {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#atm-data p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* Visualization Container Styles */
+#atm-visualization-container,
+#noble-gases-chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+canvas {
+    max-width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    header p {
+        font-size: 1em;
+    }
+
+    section {
+        padding: 10px;
+    }
+
+    canvas {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+
+/* Visualization Container Styles */
+#atm-visualization-container,
+#noble-gases-chart-container {
+    margin-top: 30px;
+}
+
+/* Loading Animation for Data */
+#atm-data p {
+    font-style: italic;
+    color: #ff6600;
+}
+
+/* Add any additional custom styles below */
