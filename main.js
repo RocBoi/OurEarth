@@ -12,15 +12,20 @@ async function fetchEarthData() {
             headers: headers,
         });
         const data = await response.json();
+        console.log("Fetched Data:", data); // Debugging line to check the fetched data
 
-        // Display data in the HTML section
+        // Displaying raw data in the HTML section
         document.getElementById("atm-data").innerHTML = `
             <p>Data from NASA Earth: ${JSON.stringify(data)}</p>
         `;
 
         // Process and render specific data for visualization
-        renderChart(data);
-        renderNobleGasChart(data);
+        if (data.timestamps && data.co2_levels) {
+            renderChart(data);
+        }
+        if (data.gases && data.concentrations) {
+            renderNobleGasChart(data);
+        }
     } catch (error) {
         console.error('Error fetching data from NASA:', error);
         document.getElementById("atm-data").innerHTML = '<p>Error fetching NASA data.</p>';
@@ -69,7 +74,7 @@ function renderNobleGasChart(data) {
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: data.gases,  // Assuming 'gases' are part of the NASA data
+            labels: data.gases,  // Assuming 'gases' is an array part of the NASA data
             datasets: [{
                 label: 'Concentration (ppm)',
                 data: data.concentrations,  // Example, make sure this exists in the data
@@ -90,4 +95,4 @@ function renderNobleGasChart(data) {
 }
 
 // Initialize the data fetching and chart rendering
-fetchEarthData();
+fetchEarthData(); // Call this function to fetch and display data when the page loads
