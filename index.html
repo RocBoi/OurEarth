@@ -1,37 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OurEarth - Real-Time 4D Globe</title>
-  <script src="https://cesium.com/downloads/cesiumjs/releases/1.109/Build/Cesium/Cesium.js"></script>
-  <link href="https://cesium.com/downloads/cesiumjs/releases/1.109/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-  <!DOCTYPE html>
-<html lang="en">
-<head>
+  <!-- Meta Tags for SEO -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OurEarth - Real-Time Data</title>
-</head>
-<body>
-  <div id="realtime">Loading real-time data...</div>
+  <meta name="description" content="OurEarth project: Real-time visualization of atmospheric data and noble gases tracking.">
+  <meta name="keywords" content="OurEarth, atmospheric data, real-time visualization, noble gases, tracking">
+  <meta name="author" content="Your Name or Organization">
+  <meta property="og:title" content="OurEarth">
+  <meta property="og:description" content="Track and visualize real-time atmospheric data and noble gases.">
+  <meta property="og:image" content="URL-to-your-image">
+  <meta property="og:url" content="https://your-username.github.io/your-repository">
+  <title>OurEarth - Real-time Atmospheric Visualization</title>
 
-  <!-- Link to your JavaScript -->
-  <script src="main.js"></script>
-</body>
-</html>
+  <!-- External Stylesheets (Bootstrap for responsiveness, your custom styles) -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css"> <!-- Your custom CSS file for design -->
+  
+  <!-- Link to Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon for the site -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- CSS Animations for improved visuals -->
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #0c2a44;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 2em;
+    }
+
+    .container {
+      margin-top: 20px;
+    }
+
+    .card {
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .chart-container {
+      width: 100%;
+      height: 500px;
+      margin-bottom: 40px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #0c2a44;
+      color: white;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
 </head>
+
 <body>
-  <div id="cesiumContainer"></div>
-  <div id="realtime">REAL-TIME ACTIVE</div>
-  <div class="control-panel">
-    <button onclick="toggleLayer('neon')">Neon</button>
-    <button onclick="toggleLayer('argon')">Argon</button>
-    <button onclick="toggleLayer('krypton')">Krypton</button>
-    <button onclick="toggleLayer('xenon')">Xenon</button>
-    <button onclick="toggleLayer('helium')">Helium</button>
+
+  <!-- Header Section -->
+  <header>
+    <h1>Welcome to OurEarth</h1>
+    <p>Real-time tracking and visualization of atmospheric data</p>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Real-time Data Display Section -->
+    <section id="real-time-data" class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Current Atmospheric Data</h5>
+            <p id="atm-data" class="card-text">Fetching data...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visualization Section for Noble Gases -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Noble Gases Visualization</h5>
+            <div id="noble-gases-visual" class="chart-container">
+              <!-- Placeholder for chart or visualization -->
+              <canvas id="noble-gases-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- API Data Visualization Example -->
+    <section id="data-visualization">
+      <h3>Real-time Data Visualization</h3>
+      <div class="chart-container">
+        <canvas id="atm-visualization"></canvas>
+      </div>
+    </section>
   </div>
-  <script src="main.js"></script>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2025 OurEarth | All rights reserved</p>
+  </footer>
+
+  <!-- External JavaScript Files -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="scripts.js"></script> <!-- Your custom JavaScript file for API fetch and interactivity -->
+
+  <script>
+    // Fetch atmospheric data and display it
+    async function fetchAirData() {
+      try {
+        const response = await fetch('https://api.example.com/atmospheric-data'); // Replace with real API
+        const data = await response.json();
+        
+        // Display the data in HTML
+        document.getElementById("atm-data").innerText = `CO2 Levels: ${data.co2} ppm, Temperature: ${data.temperature}°C`;
+        
+        // Call function to render chart with the data
+        renderChart(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        document.getElementById("atm-data").innerText = 'Error fetching data.';
+      }
+    }
+
+    // Render chart using fetched data
+    function renderChart(data) {
+      const ctx = document.getElementById('atm-visualization').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: data.timestamps, // Timestamps for x-axis
+          datasets: [{
+            label: 'CO2 Levels',
+            data: data.co2_levels, // CO2 data for y-axis
+            borderColor: 'rgba(0, 123, 255, 0.6)',
+            fill: false
+          }]
+        }
+      });
+    }
+
+    // Call the function to fetch and display data on page load
+    fetchAirData();
+  </script>
+
 </body>
 </html>
