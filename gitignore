@@ -1,1 +1,14 @@
-air_quality_data.json
+# Ignore node_modules
+node_modules/
+
+# Ignore Python virtual environments
+venv/
+
+# Ignore data files (JSON)
+data/raw/air_quality_data.json
+data/processed/
+
+# Ignore other common files
+*.log
+*.tmp
+*.bak
