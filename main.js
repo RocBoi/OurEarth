@@ -1,59 +1,98 @@
-const viewer = new Cesium.Viewer('cesiumContainer', {
-  timeline: true,
-  animation: true
-});
+// Fetch atmospheric data and display it
+async function fetchAirData() {
+    try {
+        // Replace with the actual API endpoint for your atmospheric data
+        const response = await fetch('https://api.example.com/atmospheric-data'); // Update this with the real API endpoint
+        const data = await response.json();
 
-const nobleGasLayers = {
-  neon: null,
-  argon: null,
-  krypton: null,
-  xenon: null,
-  helium: null
-};
+        // Display fetched data in the HTML
+        document.getElementById("atm-data").innerText = `CO2 Levels: ${data.co2} ppm, Temperature: ${data.temperature}°C`;
 
-function toggleLayer(gas) {
-  if (nobleGasLayers[gas]) {
-    viewer.imageryLayers.remove(nobleGasLayers[gas]);
-    nobleGasLayers[gas] = null;
-  } else {
-    const layer = viewer.imageryLayers.addImageryProvider(
-      new Cesium.IonImageryProvider({ assetId: 2 }) // Placeholder ID
-    );
-    nobleGasLayers[gas] = layer;
-  }
-}
-async function fetchAirData(lat = 33.749, lon = -84.388) {
-  const response = await fetch(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&hourly=pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone`);
-  const data = await response.json();
-  console.log("Air data:", data);
-  
-  // Example: Update UI or globe based on ozone (simulating noble gas proxy)
-  const ozone = data.hourly.ozone[0];
-  document.getElementById("realtime").textContent = `Ozone: ${ozone} μg/m³`;
+        // Render the chart with fetched data
+        renderChart(data);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        document.getElementById("atm-data").innerText = 'Error fetching data.';
+    }
 }
 
+// Render the data into the chart
+function renderChart(data) {
+    const ctx = document.getElementById('atm-visualization').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: data.timestamps, // Assuming `timestamps` is an array of time points
+            datasets: [{
+                label: 'CO2 Levels (ppm)',
+                data: data.co2_levels, // Assuming `co2_levels` is an array of CO2 data points
+                borderColor: 'rgba(0, 123, 255, 0.6)',
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Time'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'CO2 (ppm)'
+                    },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+// Call the function to fetch and display data on page load
 fetchAirData();
-setInterval(() => fetchAirData(), 300000); // 5 minutes
-// Fetch air quality data from Open-Meteo
-async function fetchAirData(lat = 33.749, lon = -84.388) {
-  try {
-    const response = await fetch(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&hourly=ozone,carbon_monoxide,nitrogen_dioxide`);
-    const data = await response.json();
-    
-    // Log data to console to verify it's being fetched correctly
-    console.log("Fetched Air Quality Data:", data);
-    
-    // Example of processing and displaying ozone data (you can update this as needed)
-    const ozone = data.hourly.ozone[0];
-    document.getElementById("realtime").textContent = `Ozone: ${ozone} µg/m³`;
 
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
+// Optional: Additional functions for noble gases or other visualizations
+function fetchNobleGasData() {
+    // Similar fetch logic for noble gases
+    fetch('https://api.example.com/noble-gas-data')  // Replace with actual noble gas API
+        .then(response => response.json())
+        .then(data => {
+            renderNobleGasChart(data);
+        })
+        .catch(error => {
+            console.error('Error fetching noble gas data:', error);
+        });
 }
 
-// Call the function to fetch data on load
-fetchAirData();
+// Render noble gases data into a separate chart
+function renderNobleGasChart(data) {
+    const ctx = document.getElementById('noble-gases-chart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.gases, // Assuming `gases` is an array of noble gases names
+            datasets: [{
+                label: 'Concentration Levels (ppm)',
+                data: data.concentration_levels, // Assuming `concentration_levels` is an array
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
 
-// Optionally, update every 5 minutes
-setInterval(() => fetchAirData(), 300000); // 5 minutes
+// Call noble gas data function if required
+fetchNobleGasData();
