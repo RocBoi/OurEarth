@@ -1,0 +1,64 @@
+{
+  "atmosphere": [
+    {
+      "gas": "Nitrogen",
+      "symbol": "N₂",
+      "concentration_percent": 78.08,
+      "description": "The most abundant gas in Earth's atmosphere, inert under standard conditions."
+    },
+    {
+      "gas": "Oxygen",
+      "symbol": "O₂",
+      "concentration_percent": 20.95,
+      "description": "Essential for aerobic respiration and combustion."
+    },
+    {
+      "gas": "Argon",
+      "symbol": "Ar",
+      "concentration_percent": 0.93,
+      "description": "A noble gas, inert and used in various industrial applications."
+    },
+    {
+      "gas": "Carbon Dioxide",
+      "symbol": "CO₂",
+      "concentration_percent": 0.04,
+      "description": "A greenhouse gas involved in photosynthesis and climate change."
+    },
+    {
+      "gas": "Neon",
+      "symbol": "Ne",
+      "concentration_percent": 0.0018,
+      "description": "A noble gas used in lighting and high-voltage indicators."
+    },
+    {
+      "gas": "Helium",
+      "symbol": "He",
+      "concentration_percent": 0.0005,
+      "description": "Second lightest element, used in cryogenics and balloons."
+    },
+    {
+      "gas": "Methane",
+      "symbol": "CH₄",
+      "concentration_percent": 0.00018,
+      "description": "A potent greenhouse gas emitted by biological activity."
+    },
+    {
+      "gas": "Krypton",
+      "symbol": "Kr",
+      "concentration_percent": 0.0001,
+      "description": "A heavy noble gas used in lighting and photography."
+    },
+    {
+      "gas": "Hydrogen",
+      "symbol": "H₂",
+      "concentration_percent": 0.00005,
+      "description": "The lightest element in the universe, found in trace amounts."
+    },
+    {
+      "gas": "Xenon",
+      "symbol": "Xe",
+      "concentration_percent": 0.000009,
+      "description": "A rare noble gas used in anesthesia and ion propulsion systems."
+    }
+  ]
+}
